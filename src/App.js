@@ -1,12 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-
-import React from 'react';
+import React, { useState } from 'react';
+import DetailModal from './DetailModal';
 
 const BizSparkLanding = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="bg-black min-h-screen text-white flex flex-col items-center justify-center p-4 relative overflow-hidden">
-      {/* Star-like background */}
+      {/* Star-like background (이전과 동일) */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(100)].map((_, i) => (
           <div
@@ -24,15 +24,15 @@ const BizSparkLanding = () => {
       </div>
       
       <div className="z-10 text-center">
-        <p className="text-yellow-400 mb-4">⚡ 지원사업 검색에 시간 쓰지 마세요. AI가 다 해드립니다! 🌟</p>
+        <p className="text-zinc-400 mb-4 ">⚡ 지원사업 검색에 시간 쓰지 마세요. AI가 다 해드립니다!  🕒</p>
         
-        <h1 className="text-6xl font-bold mb-4">
+        <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-white to-zinc-600 text-transparent bg-clip-text">
           Biz Spark
-          <span className="inline-block ml-2 transform rotate-45">💥</span>
+          <span className="">💥</span>
         </h1>
         
-        <p className="mb-2">맞춤형 지원사업 정보를 당신의 메일함으로.</p>
-        <p className="mb-8">비즈니스 성장의 새로운 엔진, Biz Spark💥</p>
+        <p className="mb-2 text-zinc-400 text-2xl">맞춤형 지원사업 정보를 당신의 메일함으로.</p>
+        <p className="mb-8 text-zinc-400 text-2xl">비즈니스 성장의 새로운 엔진, Biz Spark💥</p>
         
         <button 
           className="bg-white text-black font-bold py-2 px-4 rounded hover:bg-gray-200 transition duration-300"
@@ -44,8 +44,18 @@ const BizSparkLanding = () => {
       
       <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center text-sm">
         <p>지금 가입하고 누구보다 먼저 서비스를 받아보세요!</p>
-        <button className="underline">자세히 보기 ↗</button>
+        <button 
+          className="underline"
+          onClick={() => setIsModalOpen(true)}
+        >
+          자세히 보기 ↗
+        </button>
       </div>
+
+      <DetailModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </div>
   );
 };
